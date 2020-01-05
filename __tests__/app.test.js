@@ -24,7 +24,7 @@ describe('app routes', () => {
       .post('/api/v1/auth/signup')
       .send({ username: 'treemo', password: 'hello' })
       .then(res => {
-        
+        expect(res.header['set-cookie'][0]).toEqual(expect.stringContaining('session='));
         expect(res.body).toEqual({
           _id: expect.any(String),
           username: 'treemo',
@@ -39,6 +39,7 @@ describe('app routes', () => {
       .post('/api/v1/auth/login')
       .send({ username: 'treemo', password: 'hello' })
       .then(res => {
+        expect(res.header['set-cookie'][0]).toEqual(expect.stringContaining('session='));
         expect(res.body).toEqual({
           _id: user.id,
           username: 'treemo',
