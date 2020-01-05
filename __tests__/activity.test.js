@@ -14,15 +14,16 @@ describe('app routes', () => {
 
         agent = request.agent(app);
 
-        await User.create({
-            username: 'treesus',
+        await User
+        .create({
+            username: 'treemo',
             password: 'hello'
         });
 
         await agent
         .post('/api/v1/auth/login')
         .send({
-            username: 'treesus',
+            username: 'treemo',
             password: 'hello'
         });
     });
@@ -92,12 +93,12 @@ describe('app routes', () => {
     it('finds all activities', async() => {
         return agent
         .post('/api/v1/activities')
-        .send({
+        .send([{
             name: 'Snowboarding',
             description: 'Shreddin the gnar at shreddows.',
             duration: '5 hours',
             date: '2020-01-04'
-        })
+        }])
         .then(() => {
             return agent
             .get('/api/v1/activities')
@@ -107,12 +108,27 @@ describe('app routes', () => {
                     name: 'Snowboarding',
                     description: 'Shreddin the gnar at shreddows.',
                     duration: '5 hours',
-                    date: '2020-01-04',
+                    date: '2020-01-04T00:00:00.000Z',
                     userId: expect.any(String),
                     __v: 0
                 }]);
             });
         }); 
     });
+
+    it('finds an activity by id', () => {
+        return request(app)
+        .get(`/api/v1/activities/${activity.id}`)
+        .then(res => {
+            expect(res.body).toEqual({
+                _id: activity.id,
+                name: 'Snowboarding',
+                description: 'Shreddin the gnar at shreddows.',
+                duration: '5 hours',
+                date: '2020-01-04T00:00:00.000Z',
+                __v: 0
+            })
+        })
+    })
 
 })
