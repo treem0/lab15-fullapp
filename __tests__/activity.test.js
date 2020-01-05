@@ -131,4 +131,20 @@ describe('app routes', () => {
         })
     })
 
+    it('updates an activity by id', () => {
+        return request(app)
+        .patch(`/api/v1/activities/${activity.id}`)
+        .send({ description: 'Shreddin the gnar at Meadows.' })
+        .then(res => {
+            expect(res.body).toEqual({
+                _id: activity.id,
+                name: 'Snowboarding',
+                description: 'Shreddin the gnar at Meadows.',
+                duration: '5 hours',
+                date: '2020-01-04T00:00:00.000Z',
+                __v: 0
+            })
+        })
+    })
+
 })
