@@ -147,4 +147,19 @@ describe('app routes', () => {
         })
     })
 
+    it('deletes an activity by id', () => {
+        return request(app)
+        .delete(`/api/v1/activities/${activity.id}`)
+        .then(res => {
+            expect(res.body).toEqual({
+                _id: activity.id,
+                name: 'Snowboarding',
+                description: 'Shreddin the gnar at shreddows.',
+                duration: '5 hours',
+                date: '2020-01-04T00:00:00.000Z',
+                __v: 0
+            })
+        })
+    })
+
 })
