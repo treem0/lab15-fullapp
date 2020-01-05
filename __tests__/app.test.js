@@ -24,6 +24,7 @@ describe('app routes', () => {
       .post('/api/v1/auth/signup')
       .send({ username: 'treemo', password: 'hello' })
       .then(res => {
+        
         expect(res.body).toEqual({
           _id: expect.any(String),
           username: 'treemo',
