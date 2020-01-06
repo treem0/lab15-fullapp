@@ -16,14 +16,14 @@ describe('app routes', () => {
 
         await User
         .create({
-            username: 'treemo',
+            username: 'treesus',
             password: 'hello'
         });
 
         await agent
         .post('/api/v1/auth/login')
         .send({
-            username: 'treemo',
+            username: 'treesus',
             password: 'hello'
         });
     });
