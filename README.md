@@ -7,15 +7,9 @@ Refer to Getting Started in the lab submission instructions for complete setup, 
 Requirements
 Create a fully functioning application with authentication and CRUD routes. Make sure your CRUD routes are protected correctly. Who should be able to create data, access data, update data, and delete data.
 
-Example applications:
+For this Lab I went with an Activity tracking application. You can track the application by name, description, duration and date.
 
-workout log
-habit tracker
-notes application
-blog
-movie/show reviews
-budget tracker
-point of sale system
+
 Stretch
 build a front-end
 create meaningful aggregations

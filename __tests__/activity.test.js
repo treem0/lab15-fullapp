@@ -77,6 +77,7 @@ describe('app routes', () => {
                 description: 'Hiked around Silver State Falls',
                 duration: 'About 4 hours',
                 date: '2019-12-29T00:00:00.000Z',
+                userId: expect.any(String),
                 __v: 0
             })
         })
@@ -93,12 +94,12 @@ describe('app routes', () => {
     it('finds all activities', async() => {
         return agent
         .post('/api/v1/activities')
-        .send([{
+        .send({
             name: 'Snowboarding',
             description: 'Shreddin the gnar at shreddows.',
             duration: '5 hours',
             date: '2020-01-04'
-        }])
+        })
         .then(() => {
             return agent
             .get('/api/v1/activities')
